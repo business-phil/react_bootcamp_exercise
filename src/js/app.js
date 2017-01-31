@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const colors = ['green', 'yellow', 'black', 'red', 'white', 'blue'];
-
 const oldBlue = {
     make: "Oldsmobile",
     model: "Cutlass Ciera",
@@ -25,6 +23,8 @@ const MCM = {
     price: 25000
 }
 const cars = [oldBlue, mercy, MCM];
+
+// const colors = ['green', 'yellow', 'black', 'red', 'white', 'blue'];
 
 // class ColorList extends React.Component {
 //
@@ -73,6 +73,7 @@ class CarTool extends React.Component {
         super(props);
 
         this.state = {
+            myCars: props.myCars.concat(),
             newCar: {
                 make: '',
                 model: '',
@@ -83,6 +84,7 @@ class CarTool extends React.Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.addCar = this.addCar.bind(this);
     }
 
     onChange(e) {
@@ -91,10 +93,16 @@ class CarTool extends React.Component {
         });
     }
 
+    addCar() {
+        this.setState({
+            myCars: this.state.myCars.concat(this.state.newCar)
+        })
+    }
+
     render() {
         return (
             <div>
-                <h1>A Great Car Too</h1>
+                <h1>A Great Car Tool</h1>
                 <table>
                     <thead>
                         <tr>
@@ -106,7 +114,7 @@ class CarTool extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.myCars.map(myCar =>
+                        {this.state.myCars.map(myCar =>
                             <tr>
                                 <td>{myCar.make}</td>
                                 <td>{myCar.model}</td>
@@ -144,6 +152,7 @@ class CarTool extends React.Component {
                         <input type="number" id="new-price-input" name="price"
                         value={this.state.newCar.price} onChange={this.onChange} />
                     </div>
+                    <button type="button" onClick={this.addCar}>Add Car</button>
                 </form>
             </div>
         );
