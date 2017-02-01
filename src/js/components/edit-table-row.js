@@ -49,7 +49,7 @@ export class EditTableRow extends React.Component {
                     <input type="number" name="price" value={this.state.editCar.price} onChange={this.onChange} />
                 </td>
                 <td><button type="button" onClick={() =>
-                    this.props.save(this.state.editCar))}>Save</button></td>
+                    this.props.save(this.state.editCar)}>Save</button></td>
                 <td><button type="button" onClick={() =>
                     this.props.cancel()}>Cancel</button></td>
             </tr>

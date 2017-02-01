@@ -34,7 +34,7 @@ export class CarTool extends React.Component {
 
     save = (editCar) => {
         this.setState({
-            // Update myCars where id === editCar.id
+            myCars: this.state.myCars.filter(car => car.id !== editCar.id).concat(editCar)
             // Reset editId in car-table
         })
     }
