@@ -1,38 +1,53 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const oldBlue = {
-    id: 0,
-    make: "Oldsmobile",
-    model: "Cutlass Ciera",
-    year: 1993,
-    color: "Blue",
-    price: 1
+class Demo extends React.Component {
+
+    constructor(props) {
+        super(props);
+        console.log('called constructor');
+    }
+
+    componentWillMount() {
+        console.log('called component will mount');
+    }
+
+    componentDidMount() {
+        console.log('called component did mount');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('called component will receive props');
+        console.log('current props: ', this.props);
+        console.log('next props: ', nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('called should component update')
+        console.log('current props: ', this.props);
+        console.log('next props: ', nextProps);
+        return true;
+        // return this.props.counter !== nextProps.counter;
+    }
+
+    componentWillUpdate() {
+        console.log('called component will update');
+    }
+
+    componentDidUpdate() {
+        console.log('called component did update');
+    }
+
+    render() {
+        console.log('called render');
+        return <span>{this.props.counter}</span>;
+    }
+
+    componentWillUnmount() {
+        console.log('called component will unmount');
+    }
 }
-const mercy = {
-    id: 1,
-    make: "Mitsubishi",
-    model: "Lancer",
-    year: 2005,
-    color: "Silver",
-    price: 13000
+
+for (let x=0; x<5; x++) {
+    ReactDOM.render(<Demo counter={x} />, document.querySelector('main'));
 }
-const MCM = {
-    id: 2,
-    make: "MINI",
-    model: "Cooper Clubman",
-    year: 2013,
-    color: "Red",
-    price: 25000
-}
-const cars = [oldBlue, mercy, MCM];
-
-const colors = ['green', 'yellow', 'black', 'red', 'white', 'blue'];
-
-// import { ColorTool } from './components/color-tool';
-//
-// ReactDOM.render(<ColorTool items={colors} />, document.querySelector('main'));
-
-import { CarTool } from './components/car-tool';
-
-ReactDOM.render(<CarTool myCars={cars} />, document.querySelector('main'));
